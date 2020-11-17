@@ -1,0 +1,65 @@
+version: '2.2'
+services:
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0
+    container_name: es01
+    environment:
+      #- node.name=es01
+      - cluster.name=es-docker-cluster
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - http.cors.enabled=true
+      - http.cors.allow-origin="*"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./elastic/data:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+    networks:
+      - elastic
+      - elastic_neo
+
+
+  kib01:
+    image: docker.elastic.co/kibana/kibana:7.10.0
+    container_name: kib01
+    ports:
+      - "5601:5601"
+    environment:
+      ELASTICSEARCH_URL: http://es01:9200
+      ELASTICSEARCH_HOSTS: http://es01:9200
+    networks:
+      - elastic
+
+
+  neo4j:
+      restart: always
+      image: neo4j:3.5.14
+      container_name: neo4j
+      environment:
+        - NEO4J_AUTH=none #neo4j/password
+        - dbms.default_listen_address=0.0.0.0.
+        - dbms.unmanaged_extension_classes=com.graphaware.server=/graphaware
+        - elastic="http://es01"
+      volumes:
+        - ./neo4j/conf:/conf
+        - ./neo4j/plugins:/plugins
+        - ./neo4j/data/import:/data/import
+        - ./neo4j/data:/data
+      ports:
+        - "7474:7474"
+        - "7687:7687"
+      networks:
+        - elastic_neo
+
+
+networks:
+  elastic:
+    driver: bridge
+  elastic_neo:
+    driver: bridge
+
+

@@ -3,3 +3,5 @@ neo4j/data
 .DS_Store
 
 .idea
+elastic/data
+neo4j/data

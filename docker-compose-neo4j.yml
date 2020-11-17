@@ -1,0 +1,18 @@
+services:
+  neo4j:
+      restart: always
+      image: neo4j:3.5.14
+      container_name: neo4j
+      environment:
+        - NEO4J_AUTH=none #neo4j/password
+        - dbms.default_listen_address=0.0.0.0.
+        - dbms.unmanaged_extension_classes=com.graphaware.server=/graphaware
+       # - elastic="http://elastic_container"
+      volumes:
+        - ./neo4j/conf:/conf
+        - ./neo4j/plugins:/plugins
+        - ./neo4j/data/import:/data/import
+        - ./neo4j/data:/data
+      ports:
+        - "7474:7474"
+        - "7687:7687"
