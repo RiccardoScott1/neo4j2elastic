@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="23faa8bb-4491-4452-96e5-8c1c761933bc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose-es.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose-es.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neo4j/conf/neo4j.conf" beforeDir="false" afterPath="$PROJECT_DIR$/neo4j/conf/neo4j.conf" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -76,7 +74,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605615094249</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="tested with some data , problem only one node type can be indexed">
+      <created>1605617187116</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1605617187119</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -84,7 +89,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -92,6 +99,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="elastic single node with kibana and neo4j running together" />
-    <option name="LAST_COMMIT_MESSAGE" value="elastic single node with kibana and neo4j running together" />
+    <MESSAGE value="tested with some data , problem only one node type can be indexed" />
+    <option name="LAST_COMMIT_MESSAGE" value="tested with some data , problem only one node type can be indexed" />
   </component>
 </project>
