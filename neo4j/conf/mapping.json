@@ -1,0 +1,20 @@
+{
+  "defaults": {
+    "key_property": "uuid",
+    "nodes_index": "default-index-node",
+    "relationships_index": "default-index-relationship",
+    "include_remaining_properties": true
+  },
+  "node_mappings": [
+    {
+      "condition": "hasLabel('PARAGRAPH')",
+      "index": "default-index-node",
+      "type": "paragraphs",
+      "properties": {
+        "text": "getProperty('text')",
+        "keywords": "query('MATCH (n) WHERE id(n) = {id} MATCH (n)<-[r:is_in]-(phrase:PHRASE) return collect(phrase.text) as value')"
+      }
+    }
+  ],
+  "relationship_mappings":  []
+}

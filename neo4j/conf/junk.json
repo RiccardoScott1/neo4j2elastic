@@ -1,0 +1,57 @@
+  {
+      "condition": "hasLabel('PHRASE')",
+      "type": "paragraphs",
+      "properties": {
+        "keyword": "getProperty('text')"
+      }
+    }
+
+
+
+    {
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "autocomplete": {
+          "tokenizer": "autocomplete",
+          "filter": [
+            "lowercase"
+          ]
+        },
+        "autocomplete_search": {
+          "tokenizer": "lowercase"
+        }
+      },
+      "tokenizer": {
+        "autocomplete": {
+          "type": "edge_ngram",
+          "min_gram": 2,
+          "max_gram": 10,
+          "token_chars": [
+            "letter"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "title": {
+        "type": "text",
+        "analyzer": "autocomplete",
+        "search_analyzer": "autocomplete_search"
+      }
+    }
+  }
+}
+
+
+GET default-index-node/_search
+{
+  "query": {
+    "query_string": {
+      "query": "work",
+      "analyzer": "english"
+    }
+  }
+}

@@ -1,8 +1,12 @@
 version: '2.2'
 services:
+
+
   es01:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0
     container_name: es01
+   # build:
+   #   context: ./elastic
     environment:
       #- node.name=es01
       - cluster.name=es-docker-cluster
@@ -16,12 +20,21 @@ services:
         hard: -1
     volumes:
       - ./elastic/data:/usr/share/elasticsearch/data
+     # - ./elastic/elasticsearch_startup.sh:/usr/share/elasticsearch/elasticsearch_startup.sh
+     # - "./elastic/elasticsearch_mapping.json"
     ports:
       - "9200:9200"
     networks:
       - elastic
       - elastic_neo
+    #command: ["sh", "./elasticsearch_startup.sh"]
 
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://es01:9200"]
+      interval: 0m30s
+      timeout: 10s
+      #start_period: 40s
+      retries: 3
 
   kib01:
     image: docker.elastic.co/kibana/kibana:7.10.0
@@ -33,7 +46,9 @@ services:
       ELASTICSEARCH_HOSTS: http://es01:9200
     networks:
       - elastic
-
+    depends_on:
+      es01:
+        condition: service_healthy
 
   neo4j:
       restart: always
@@ -44,6 +59,7 @@ services:
         - dbms.default_listen_address=0.0.0.0.
         - dbms.unmanaged_extension_classes=com.graphaware.server=/graphaware
         - elastic="http://es01"
+        - NEO4J_dbms_directories_data=./neo4j/data
       volumes:
         - ./neo4j/conf:/conf
         - ./neo4j/plugins:/plugins
@@ -54,7 +70,9 @@ services:
         - "7687:7687"
       networks:
         - elastic_neo
-
+      depends_on:
+        es01:
+          condition: service_healthy
 
 networks:
   elastic:

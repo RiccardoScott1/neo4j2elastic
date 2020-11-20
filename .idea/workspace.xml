@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="23faa8bb-4491-4452-96e5-8c1c761933bc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose-es.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose-es.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neo4j/conf/neo4j.conf" beforeDir="false" afterPath="$PROJECT_DIR$/neo4j/conf/neo4j.conf" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
